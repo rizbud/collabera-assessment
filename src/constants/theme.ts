@@ -9,10 +9,10 @@ export const Colors = {
 export type ThemeColor = keyof typeof Colors;
 
 export const Fonts = {
-  regular: "Inter_400Regular",
-  medium: "Inter_500Medium",
-  semiBold: "Inter_600SemiBold",
-  bold: "Inter_700Bold",
+  regular: "NunitoSans_400Regular",
+  medium: "NunitoSans_500Medium",
+  semiBold: "NunitoSans_600SemiBold",
+  bold: "NunitoSans_700Bold",
 } as const;
 
 export const Spacing = {
