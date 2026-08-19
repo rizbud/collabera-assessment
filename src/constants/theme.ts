@@ -1,9 +1,11 @@
 export const Colors = {
-  text: "#000000",
-  background: "#ffffff",
-  backgroundElement: "#F0F0F3",
-  backgroundSelected: "#E0E1E6",
-  textSecondary: "#60646C",
+  foreground: "#000000",
+  background: "#EEEEEE",
+  white: "#FFFFFF",
+  primary: "#6057FF",
+  primaryDark: "#4B3DFF",
+  secondary: "#FF6584",
+  secondaryDark: "#FF3B6F",
 } as const;
 
 export type ThemeColor = keyof typeof Colors;
