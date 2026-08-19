@@ -1,44 +1,70 @@
-import { TransactionItem } from "@/components";
-import { Fonts, Spacing } from "@/constants/theme";
 import { FlashList } from "@shopify/flash-list";
-import { StyleSheet, Text } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
-export const TransactionList = () => {
+import { TransactionItem } from "@/components";
+import { Colors, Fonts, Spacing } from "@/constants/theme";
+import {
+  TransactionMonthHeader,
+  TransactionRow,
+} from "@/types/transaction.type";
+import { formatCurrency, isMonthHeader } from "@/utils";
+
+interface TransactionListProps {
+  data: TransactionRow[];
+}
+
+const MonthHeader = ({
+  month,
+  incoming,
+  outgoing,
+  index,
+}: TransactionMonthHeader) => (
+  <View
+    style={[
+      styles.monthHeader,
+      { paddingTop: index === 0 ? Spacing.two : Spacing.three },
+    ]}
+  >
+    <Text
+      style={styles.monthText}
+      accessibilityRole="header"
+      accessibilityLabel={`Transactions in ${month}`}
+    >
+      {month}
+    </Text>
+    <View>
+      <Text
+        style={styles.totalText}
+        accessibilityRole="text"
+        accessibilityLabel={`Incoming ${formatCurrency(incoming)}`}
+      >
+        Incoming: {formatCurrency(incoming)}
+      </Text>
+      <Text
+        style={styles.totalText}
+        accessibilityRole="text"
+        accessibilityLabel={`Outgoing ${formatCurrency(outgoing)}`}
+      >
+        Outgoing: {formatCurrency(outgoing)}
+      </Text>
+    </View>
+  </View>
+);
+
+export const TransactionList = ({ data }: TransactionListProps) => {
   return (
     <FlashList
       accessibilityRole="list"
-      data={[
-        {
-          refId: "123ABC",
-          transferDate: "2024-10-15T12:34:56Z",
-          recipientName: "John Doe",
-          transferName: "Salary Payment",
-          amount: 1500.0,
-        },
-        {
-          refId: "456DEF",
-          transferDate: "2024-09-21T09:12:45Z",
-          recipientName: "Jane Smith",
-          transferName: "Invoice Payment",
-          amount: 2300.75,
-        },
-        {
-          refId: "789GHI",
-          transferDate: "2024-10-05T16:18:30Z",
-          recipientName: "Robert Brown",
-          transferName: "Refund",
-          amount: -500.0,
-        },
-        {
-          refId: "101JKL",
-          transferDate: "2024-08-30T11:47:22Z",
-          recipientName: "Emily Davis",
-          transferName: "Bonus Payment",
-          amount: 1200.0,
-        },
-      ]}
-      renderItem={({ item }) => <TransactionItem data={item} />}
-      keyExtractor={(item) => item.refId}
+      data={data}
+      getItemType={(item) => (isMonthHeader(item) ? "header" : "row")}
+      renderItem={({ item, index }) =>
+        isMonthHeader(item) ? (
+          <MonthHeader {...item} index={index} />
+        ) : (
+          <TransactionItem data={item} />
+        )
+      }
+      keyExtractor={(item) => (isMonthHeader(item) ? item.month : item.refId)}
       ListEmptyComponent={
         <Text
           style={styles.emptyText}
@@ -49,6 +75,7 @@ export const TransactionList = () => {
         </Text>
       }
       contentContainerStyle={styles.container}
+      showsVerticalScrollIndicator={false}
     />
   );
 };
@@ -56,6 +83,26 @@ export const TransactionList = () => {
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: Spacing.three,
+    paddingBottom: Spacing.four,
+  },
+  monthHeader: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    gap: Spacing.two,
+    backgroundColor: Colors.background,
+    paddingBottom: Spacing.one,
+  },
+  monthText: {
+    fontSize: 14,
+    fontFamily: Fonts.bold,
+    color: Colors.gray,
+  },
+  totalText: {
+    fontSize: 12,
+    fontFamily: Fonts.regular,
+    color: Colors.gray,
+    textAlign: "right",
   },
   emptyText: {
     fontSize: 14,

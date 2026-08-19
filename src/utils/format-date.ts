@@ -1,4 +1,4 @@
-export function formatDatetime(dateString: string, locale: string = "my-MY"): string {
+export function formatDatetime(dateString: string, locale: string = "ms-MY"): string {
   const date = new Date(dateString);
   const options: Intl.DateTimeFormatOptions = {
     year: "numeric",

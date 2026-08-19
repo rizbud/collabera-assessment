@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     paddingHorizontal: Spacing.three,
+    paddingBottom: Spacing.two,
     gap: Spacing.three,
   },
   filterButton: {

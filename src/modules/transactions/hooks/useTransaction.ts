@@ -2,9 +2,13 @@ import * as Share from "expo-sharing";
 import { useCallback, useRef, useState } from "react";
 import { ViewShotRef } from "react-native-view-shot";
 
+import { useTransactionsStore } from "@/store";
 import { toast } from "@/utils";
 
-export const useTransaction = () => {
+export const useTransaction = (refId?: string) => {
+  const transaction = useTransactionsStore((s) =>
+    s.transactions.find((t) => t.refId === refId),
+  );
   const [isCapturing, setIsCapturing] = useState(false);
   const shotRef = useRef<ViewShotRef>(null);
 
@@ -29,6 +33,7 @@ export const useTransaction = () => {
   }, []);
 
   return {
+    transaction,
     shotRef,
     isCapturing,
     handleShotRef,
