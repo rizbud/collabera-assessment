@@ -40,6 +40,8 @@ export default function RootLayout() {
       <StatusBar barStyle="dark-content" backgroundColor={Colors.background} />
       <Stack screenOptions={{ headerShown: false }}>
         <Stack.Screen name="(home)/index" />
+        <Stack.Screen name="transactions/index" />
+        <Stack.Screen name="transactions/[ref-id]" />
       </Stack>
     </SafeAreaProvider>
   );

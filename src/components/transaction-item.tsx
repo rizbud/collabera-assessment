@@ -2,6 +2,7 @@ import { Colors, Fonts, Spacing } from "@/constants/theme";
 import { Transaction } from "@/types/transaction.type";
 import { formatCurrency, formatDatetime } from "@/utils";
 import { Feather } from "@expo/vector-icons";
+import { router } from "expo-router";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 interface TransactionItemProps {
@@ -17,7 +18,7 @@ export const TransactionItem = (props: TransactionItemProps) => {
     <TouchableOpacity
       activeOpacity={0.7}
       style={styles.wrapper}
-      onPress={() => console.log("Transaction pressed")}
+      onPress={() => router.push(`/transactions/${data.refId}`)}
       accessibilityRole="button"
       accessibilityLabel={`Transaction ${type} ${data.transferName} of ${formatCurrency(absoluteAmount)} ${type === "in" ? "from" : "to"} ${data.recipientName} on ${formatDatetime(data.transferDate)}`}
     >

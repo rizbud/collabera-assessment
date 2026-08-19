@@ -1,7 +1,6 @@
 export const Colors = {
   foreground: "#000000",
-  background: "#EEEEEE",
-  white: "#FFFFFF",
+  background: "#FFFFFF",
   primary: "#6057FF",
   primaryDark: "#4B3DFF",
   gray: "#595959",

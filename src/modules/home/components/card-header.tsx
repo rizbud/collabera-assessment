@@ -58,11 +58,11 @@ const styles = StyleSheet.create({
   balanceLabel: {
     fontSize: 18,
     fontFamily: Fonts.semiBold,
-    color: Colors.white,
+    color: Colors.background,
   },
   balanceAmountText: {
     fontSize: 24,
     fontFamily: Fonts.bold,
-    color: Colors.white,
+    color: Colors.background,
   },
 });

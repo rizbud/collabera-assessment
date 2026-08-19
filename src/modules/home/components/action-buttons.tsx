@@ -3,11 +3,19 @@ import { useCallback } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 import { Colors, Fonts, Spacing } from "@/constants/theme";
+import { router } from "expo-router";
 
 export const ActionButtons = () => {
   const handleActionPress = useCallback(
     (action: "add" | "send" | "history" | "more") => {
-      console.log(`Action pressed: ${action}`);
+      switch (action) {
+        case "history":
+          router.push("/transactions");
+          break;
+        default:
+          console.log(`Action pressed: ${action}`);
+          break;
+      }
     },
     [],
   );

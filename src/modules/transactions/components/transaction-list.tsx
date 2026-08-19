@@ -1,36 +1,12 @@
-import { FlashList } from "@shopify/flash-list";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-
 import { TransactionItem } from "@/components";
-import { Colors, Fonts, Spacing } from "@/constants/theme";
-import { Feather } from "@expo/vector-icons";
-import { router } from "expo-router";
+import { Fonts, Spacing } from "@/constants/theme";
+import { FlashList } from "@shopify/flash-list";
+import { StyleSheet, Text } from "react-native";
 
-export const Transactions = () => {
+export const TransactionList = () => {
   return (
     <FlashList
       accessibilityRole="list"
-      ListHeaderComponent={
-        <View style={styles.titleWrapper}>
-          <Text
-            style={styles.title}
-            accessibilityRole="text"
-            accessibilityLabel="Recent Transactions"
-          >
-            Recent Transactions
-          </Text>
-          <TouchableOpacity
-            activeOpacity={0.7}
-            onPress={() => router.push("/transactions")}
-            style={styles.viewAllButton}
-            accessibilityRole="button"
-            accessibilityLabel="View all transactions"
-          >
-            <Text style={styles.viewAllText}>View All</Text>
-            <Feather name="chevron-right" size={14} color={Colors.gray} />
-          </TouchableOpacity>
-        </View>
-      }
       data={[
         {
           refId: "123ABC",
@@ -72,30 +48,14 @@ export const Transactions = () => {
           No transactions available
         </Text>
       }
-      scrollEnabled={false}
+      contentContainerStyle={styles.container}
     />
   );
 };
 
 const styles = StyleSheet.create({
-  titleWrapper: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-  },
-  title: {
-    fontSize: 16,
-    fontFamily: Fonts.bold,
-  },
-  viewAllButton: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: Spacing.half,
-  },
-  viewAllText: {
-    fontSize: 14,
-    fontFamily: Fonts.regular,
-    color: Colors.gray,
+  container: {
+    paddingHorizontal: Spacing.three,
   },
   emptyText: {
     fontSize: 14,
