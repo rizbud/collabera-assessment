@@ -9,6 +9,12 @@ export const ActionButtons = () => {
   const handleActionPress = useCallback(
     (action: "add" | "send" | "history" | "more") => {
       switch (action) {
+        case "add":
+          router.push("/transactions/add");
+          break;
+        case "send":
+          router.push("/transactions/send");
+          break;
         case "history":
           router.push("/transactions");
           break;

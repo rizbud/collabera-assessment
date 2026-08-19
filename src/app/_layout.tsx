@@ -41,6 +41,11 @@ export default function RootLayout() {
       <Stack screenOptions={{ headerShown: false }}>
         <Stack.Screen name="(home)/index" />
         <Stack.Screen name="transactions/index" />
+        <Stack.Screen name="transactions/add" options={{ presentation: "modal" }} />
+        <Stack.Screen
+          name="transactions/send"
+          options={{ presentation: "modal" }}
+        />
         <Stack.Screen name="transactions/[ref-id]" />
       </Stack>
     </SafeAreaProvider>

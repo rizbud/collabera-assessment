@@ -47,6 +47,10 @@ const styles = StyleSheet.create({
   titleWrapper: {
     flex: 1,
     alignItems: "center",
+    position: "absolute",
+    left: 0,
+    right: 0,
+    textAlign: "center",
   },
   title: {
     fontSize: 18,

@@ -8,6 +8,9 @@ export interface Transaction {
 
 export type Transactions = Transaction[];
 
+// A transaction being created: refId and transferDate are stamped by the store
+export type NewTransaction = Omit<Transaction, "refId" | "transferDate">;
+
 export interface TransactionMonthHeader {
   month: string;
   incoming: number;
