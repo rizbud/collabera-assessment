@@ -3,6 +3,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 import { Header } from "@/components/header";
 import { Colors, Spacing } from "@/constants/theme";
+import { useI18n } from "@/i18n";
 import {
   FilterTransactions,
   TransactionList,
@@ -10,11 +11,12 @@ import {
 import { useTransactions } from "@/modules/transactions/hooks";
 
 export default function TransactionsScreen() {
+  const { t } = useI18n();
   const { activeFilter, setActiveFilter, rows } = useTransactions();
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      <Header title="Transaction History" />
+      <Header title={t("transactions.title")} />
 
       <View style={styles.container}>
         <FilterTransactions

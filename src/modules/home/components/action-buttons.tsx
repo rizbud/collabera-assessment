@@ -3,9 +3,11 @@ import { useCallback } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 import { Colors, Fonts, Spacing } from "@/constants/theme";
+import { useI18n } from "@/i18n";
 import { router } from "expo-router";
 
 export const ActionButtons = () => {
+  const { t } = useI18n();
   const handleActionPress = useCallback(
     (action: "add" | "send" | "history" | "more") => {
       switch (action) {
@@ -33,43 +35,43 @@ export const ActionButtons = () => {
         onPress={() => handleActionPress("add")}
         style={styles.button}
         accessibilityRole="button"
-        accessibilityLabel="Add"
+        accessibilityLabel={t("home.actions.add")}
       >
         <View style={styles.iconWrapper}>
           <Feather name="plus" size={32} color={Colors.primaryDark} />
         </View>
-        <Text style={styles.buttonText}>Add</Text>
+        <Text style={styles.buttonText}>{t("home.actions.add")}</Text>
       </TouchableOpacity>
       <TouchableOpacity
         activeOpacity={0.7}
         onPress={() => handleActionPress("send")}
         style={styles.button}
         accessibilityRole="button"
-        accessibilityLabel="Send"
+        accessibilityLabel={t("home.actions.send")}
       >
         <View style={styles.iconWrapper}>
           <Feather name="arrow-up-right" size={32} color={Colors.primaryDark} />
         </View>
-        <Text style={styles.buttonText}>Send</Text>
+        <Text style={styles.buttonText}>{t("home.actions.send")}</Text>
       </TouchableOpacity>
       <TouchableOpacity
         activeOpacity={0.7}
         onPress={() => handleActionPress("history")}
         style={styles.button}
         accessibilityRole="button"
-        accessibilityLabel="History"
+        accessibilityLabel={t("home.actions.history")}
       >
         <View style={styles.iconWrapper}>
           <Feather name="clock" size={32} color={Colors.primaryDark} />
         </View>
-        <Text style={styles.buttonText}>History</Text>
+        <Text style={styles.buttonText}>{t("home.actions.history")}</Text>
       </TouchableOpacity>
       <TouchableOpacity
         activeOpacity={0.7}
         onPress={() => handleActionPress("more")}
         style={styles.button}
         accessibilityRole="button"
-        accessibilityLabel="More"
+        accessibilityLabel={t("home.actions.more")}
       >
         <View style={styles.iconWrapper}>
           <Feather
@@ -78,7 +80,7 @@ export const ActionButtons = () => {
             color={Colors.primaryDark}
           />
         </View>
-        <Text style={styles.buttonText}>More</Text>
+        <Text style={styles.buttonText}>{t("home.actions.more")}</Text>
       </TouchableOpacity>
     </View>
   );

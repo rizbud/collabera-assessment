@@ -6,12 +6,14 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 import { TransactionItem } from "@/components";
 import { Colors, Fonts, Spacing } from "@/constants/theme";
+import { useI18n } from "@/i18n";
 import { useTransactionsStore } from "@/store";
 import { sortByDateDesc } from "@/utils";
 
 const RECENT_COUNT = 5;
 
 export const Transactions = () => {
+  const { t } = useI18n();
   const transactions = useTransactionsStore((s) => s.transactions);
   const recent = useMemo(
     () => sortByDateDesc(transactions).slice(0, RECENT_COUNT),
@@ -26,18 +28,18 @@ export const Transactions = () => {
           <Text
             style={styles.title}
             accessibilityRole="text"
-            accessibilityLabel="Recent Transactions"
+            accessibilityLabel={t("home.recentTransactions")}
           >
-            Recent Transactions
+            {t("home.recentTransactions")}
           </Text>
           <TouchableOpacity
             activeOpacity={0.7}
             onPress={() => router.push("/transactions")}
             style={styles.viewAllButton}
             accessibilityRole="button"
-            accessibilityLabel="View all transactions"
+            accessibilityLabel={t("home.viewAllA11y")}
           >
-            <Text style={styles.viewAllText}>View All</Text>
+            <Text style={styles.viewAllText}>{t("home.viewAll")}</Text>
             <Feather name="chevron-right" size={14} color={Colors.gray} />
           </TouchableOpacity>
         </View>
@@ -49,9 +51,9 @@ export const Transactions = () => {
         <Text
           style={styles.emptyText}
           accessibilityRole="text"
-          accessibilityLabel="No transactions available"
+          accessibilityLabel={t("common.empty")}
         >
-          No transactions available
+          {t("common.empty")}
         </Text>
       }
       scrollEnabled={false}

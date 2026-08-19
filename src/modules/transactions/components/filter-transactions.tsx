@@ -1,6 +1,7 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 import { Colors, Fonts, Spacing } from "@/constants/theme";
+import { useI18n } from "@/i18n";
 import { FilterTransactionValue } from "@/types/filter-transactions.type";
 import { FILTERS } from "../constants";
 
@@ -13,6 +14,8 @@ export const FilterTransactions = ({
   activeFilter = "all",
   onFilterChange,
 }: FilterTransactionsProps) => {
+  const { t } = useI18n();
+
   return (
     <View style={styles.container}>
       {FILTERS.map((filter) => {
@@ -22,7 +25,9 @@ export const FilterTransactions = ({
           <TouchableOpacity
             key={filter.value}
             accessibilityRole="button"
-            accessibilityLabel={`Filter transactions by ${filter.label}`}
+            accessibilityLabel={t("transactions.filterA11y", {
+              label: t(filter.labelKey),
+            })}
             accessibilityState={{ selected: isActive }}
             activeOpacity={0.7}
             onPress={() => onFilterChange?.(filter.value)}
@@ -31,7 +36,7 @@ export const FilterTransactions = ({
             <Text
               style={[styles.filterText, isActive && styles.activeFilterText]}
             >
-              {filter.label}
+              {t(filter.labelKey)}
             </Text>
           </TouchableOpacity>
         );

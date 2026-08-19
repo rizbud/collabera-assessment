@@ -2,6 +2,7 @@ import * as Share from "expo-sharing";
 import { useCallback, useRef, useState } from "react";
 import { ViewShotRef } from "react-native-view-shot";
 
+import i18n from "@/i18n";
 import { useTransactionsStore } from "@/store";
 import { toast } from "@/utils";
 
@@ -23,12 +24,12 @@ export const useTransaction = (refId?: string) => {
       }
 
       await Share.shareAsync(imageUri, {
-        dialogTitle: "Share Transaction Details",
+        dialogTitle: i18n.t("detail.shareDialogTitle"),
         mimeType: "image/png",
       });
     } catch (error) {
       console.error("Error capturing transaction details:", error);
-      toast("An error occurred while capturing the transaction details.");
+      toast(i18n.t("detail.shareError"));
     }
   }, []);
 

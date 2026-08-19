@@ -5,6 +5,8 @@ import type {
   Transactions,
 } from "@/types/transaction.type";
 
+import { formatMonthYear } from "./format-date";
+
 export const isMonthHeader = (
   row: TransactionRow,
 ): row is TransactionMonthHeader => "month" in row;
@@ -37,10 +39,7 @@ export const groupByMonth = (transactions: Transactions): TransactionRow[] => {
   let header: TransactionMonthHeader | undefined;
 
   for (const transaction of sortByDateDesc(transactions)) {
-    const month = new Date(transaction.transferDate).toLocaleDateString(
-      undefined,
-      { month: "long", year: "numeric" },
-    );
+    const month = formatMonthYear(transaction.transferDate);
 
     if (header?.month !== month) {
       header = { month, incoming: 0, outgoing: 0 };

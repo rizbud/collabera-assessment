@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 
 import { TransactionItem } from "@/components";
 import { Colors, Fonts, Spacing } from "@/constants/theme";
+import { useI18n } from "@/i18n";
 import {
   TransactionMonthHeader,
   TransactionRow,
@@ -18,40 +19,50 @@ const MonthHeader = ({
   incoming,
   outgoing,
   index,
-}: TransactionMonthHeader) => (
-  <View
-    style={[
-      styles.monthHeader,
-      { paddingTop: index === 0 ? Spacing.two : Spacing.three },
-    ]}
-  >
-    <Text
-      style={styles.monthText}
-      accessibilityRole="header"
-      accessibilityLabel={`Transactions in ${month}`}
+}: TransactionMonthHeader) => {
+  const { t } = useI18n();
+
+  return (
+    <View
+      style={[
+        styles.monthHeader,
+        { paddingTop: index === 0 ? Spacing.two : Spacing.three },
+      ]}
     >
-      {month}
-    </Text>
-    <View>
       <Text
-        style={styles.totalText}
-        accessibilityRole="text"
-        accessibilityLabel={`Incoming ${formatCurrency(incoming)}`}
+        style={styles.monthText}
+        accessibilityRole="header"
+        accessibilityLabel={t("transactions.monthA11y", { month })}
       >
-        Incoming: {formatCurrency(incoming)}
+        {month}
       </Text>
-      <Text
-        style={styles.totalText}
-        accessibilityRole="text"
-        accessibilityLabel={`Outgoing ${formatCurrency(outgoing)}`}
-      >
-        Outgoing: {formatCurrency(outgoing)}
-      </Text>
+      <View>
+        <Text
+          style={styles.totalText}
+          accessibilityRole="text"
+          accessibilityLabel={t("transactions.incomingA11y", {
+            amount: formatCurrency(incoming),
+          })}
+        >
+          {t("transactions.incoming", { amount: formatCurrency(incoming) })}
+        </Text>
+        <Text
+          style={styles.totalText}
+          accessibilityRole="text"
+          accessibilityLabel={t("transactions.outgoingA11y", {
+            amount: formatCurrency(outgoing),
+          })}
+        >
+          {t("transactions.outgoing", { amount: formatCurrency(outgoing) })}
+        </Text>
+      </View>
     </View>
-  </View>
-);
+  );
+};
 
 export const TransactionList = ({ data }: TransactionListProps) => {
+  const { t } = useI18n();
+
   return (
     <FlashList
       accessibilityRole="list"
@@ -69,9 +80,9 @@ export const TransactionList = ({ data }: TransactionListProps) => {
         <Text
           style={styles.emptyText}
           accessibilityRole="text"
-          accessibilityLabel="No transactions available"
+          accessibilityLabel={t("common.empty")}
         >
-          No transactions available
+          {t("common.empty")}
         </Text>
       }
       contentContainerStyle={styles.container}

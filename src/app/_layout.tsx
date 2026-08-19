@@ -1,4 +1,6 @@
 import { Colors } from "@/constants/theme";
+import "@/i18n";
+import "@/store/language.store";
 import {
   NunitoSans_400Regular,
   NunitoSans_500Medium,

@@ -1,4 +1,6 @@
-export function formatDatetime(dateString: string, locale: string = "ms-MY"): string {
+import { dateLocale } from "@/i18n";
+
+export function formatDatetime(dateString: string, locale?: string): string {
   const date = new Date(dateString);
   const options: Intl.DateTimeFormatOptions = {
     year: "numeric",
@@ -8,5 +10,12 @@ export function formatDatetime(dateString: string, locale: string = "ms-MY"): st
     minute: "2-digit",
     hour12: false,
   };
-  return date.toLocaleDateString(locale, options);
+  return date.toLocaleDateString(locale ?? dateLocale(), options);
+}
+
+export function formatMonthYear(dateString: string, locale?: string): string {
+  return new Date(dateString).toLocaleDateString(locale ?? dateLocale(), {
+    month: "long",
+    year: "numeric",
+  });
 }

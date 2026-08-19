@@ -1,16 +1,22 @@
-export function greeting(name: string): string {
+// Translation key for the current time of day, translated where it is rendered
+// so it follows the selected language
+export function greetingKey(): string {
   // Get the current hour in the user's local time zone
   const currentHour = new Date().getHours();
-  let greetingMessage: string;
+  let period: string;
 
   // Determine the appropriate greeting based on the current hour
-  if (currentHour < 12) {
-    greetingMessage = "Good morning";
-  } else if (currentHour < 18) {
-    greetingMessage = "Good afternoon";
-  } else {
-    greetingMessage = "Good evening";
+  switch (true) {
+    case currentHour < 12:
+      period = "morning";
+      break;
+    case currentHour < 18:
+      period = "afternoon";
+      break;
+    default:
+      period = "evening";
+      break;
   }
 
-  return `${greetingMessage}, ${name}!`;
+  return `home.greeting.${period}`;
 }

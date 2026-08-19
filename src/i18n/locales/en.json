@@ -1,0 +1,96 @@
+{
+  "common": {
+    "back": "Back",
+    "empty": "No transactions available",
+    "copied": "Copied to clipboard",
+    "copy": "Copy {{label}}",
+    "switchLanguage": "Switch language to {{language}}"
+  },
+  "home": {
+    "greeting": {
+      "morning": "Good morning, {{name}}!",
+      "afternoon": "Good afternoon, {{name}}!",
+      "evening": "Good evening, {{name}}!"
+    },
+    "balanceLabel": "Your Balance:",
+    "balanceA11y": "Your balance is {{amount}}",
+    "actions": {
+      "add": "Add",
+      "send": "Send",
+      "history": "History",
+      "more": "More"
+    },
+    "recentTransactions": "Recent Transactions",
+    "viewAll": "View All",
+    "viewAllA11y": "View all transactions"
+  },
+  "transactions": {
+    "title": "Transaction History",
+    "filters": {
+      "all": "All",
+      "in": "Incoming",
+      "out": "Outgoing"
+    },
+    "filterA11y": "Filter transactions by {{label}}",
+    "monthA11y": "Transactions in {{month}}",
+    "incoming": "Incoming: {{amount}}",
+    "outgoing": "Outgoing: {{amount}}",
+    "incomingA11y": "Incoming {{amount}}",
+    "outgoingA11y": "Outgoing {{amount}}",
+    "itemA11y": {
+      "in": "Incoming transaction {{name}} of {{amount}} from {{recipient}} on {{date}}",
+      "out": "Outgoing transaction {{name}} of {{amount}} to {{recipient}} on {{date}}"
+    }
+  },
+  "detail": {
+    "title": "Transaction Details",
+    "notFound": "Transaction not found",
+    "refId": "Reference ID",
+    "recipientName": "Recipient Name",
+    "transferDate": "Transfer Date",
+    "transferNameA11y": "Transfer Name: {{name}}",
+    "amountA11y": {
+      "in": "Amount in {{amount}}",
+      "out": "Amount out {{amount}}"
+    },
+    "share": "Share",
+    "shareA11y": "Share transaction details",
+    "shareDialogTitle": "Share Transaction Details",
+    "shareError": "An error occurred while capturing the transaction details."
+  },
+  "form": {
+    "addTitle": "Add Money",
+    "sendTitle": "Send Money",
+    "availableBalance": "Available balance: {{amount}}",
+    "senderName": "Sender Name",
+    "recipientName": "Recipient Name",
+    "description": "Description",
+    "amount": "Amount",
+    "placeholder": {
+      "senderName": "e.g. Acme Corp",
+      "recipientName": "e.g. John Doe",
+      "descriptionIn": "e.g. Salary Payment",
+      "descriptionOut": "e.g. Rent",
+      "amount": "0.00"
+    },
+    "error": {
+      "senderName": "Sender name is required",
+      "recipientName": "Recipient name is required",
+      "description": "Description is required",
+      "amount": "Enter an amount greater than 0",
+      "insufficientBalance": "Amount exceeds your balance of {{amount}}"
+    },
+    "submit": {
+      "add": "Add",
+      "send": "Send"
+    },
+    "submitA11y": {
+      "add": "Add money",
+      "send": "Send money"
+    },
+    "success": {
+      "add": "Added {{amount}}",
+      "send": "Sent {{amount}} to {{recipient}}"
+    }
+  }
+}

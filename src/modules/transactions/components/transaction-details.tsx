@@ -4,6 +4,7 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import ViewShot, { ViewShotRef } from "react-native-view-shot";
 
 import { Colors, Fonts, Spacing } from "@/constants/theme";
+import { useI18n } from "@/i18n";
 import { Transaction } from "@/types/transaction.type";
 import { copyToClipboard, formatCurrency, formatDatetime } from "@/utils";
 
@@ -18,7 +19,10 @@ interface TransactionDetailsProps {
   isCapturing?: boolean;
 }
 
-const Row = ({ label, value, canCopy }: RowProps) => (
+const Row = ({ label, value, canCopy }: RowProps) => {
+  const { t } = useI18n();
+
+  return (
   <View style={styles.row}>
     <Text
       style={styles.label}
@@ -41,19 +45,21 @@ const Row = ({ label, value, canCopy }: RowProps) => (
           activeOpacity={0.7}
           onPress={() => copyToClipboard(value)}
           accessibilityRole="button"
-          accessibilityLabel={`Copy ${label}`}
+          accessibilityLabel={t("common.copy", { label })}
         >
           <Feather name="copy" size={20} color={Colors.gray} />
         </TouchableOpacity>
       )}
     </View>
   </View>
-);
+  );
+};
 
 export const TransactionDetails = forwardRef<
   ViewShotRef,
   TransactionDetailsProps
 >(({ transaction, isCapturing }, ref) => {
+  const { t } = useI18n();
   const type = transaction.amount >= 0 ? "in" : "out";
   const absoluteAmount = Math.abs(transaction.amount);
 
@@ -79,14 +85,18 @@ export const TransactionDetails = forwardRef<
             <Text
               style={[styles.transferName, type === "in" && styles.greenText]}
               accessibilityRole="text"
-              accessibilityLabel={`Transfer Name: ${transaction.transferName}`}
+              accessibilityLabel={t("detail.transferNameA11y", {
+                name: transaction.transferName,
+              })}
             >
               {transaction.transferName}
             </Text>
             <Text
               style={[styles.amount, type === "in" && styles.greenText]}
               accessibilityRole="text"
-              accessibilityLabel={`Amount ${type} ${formatCurrency(absoluteAmount)}`}
+              accessibilityLabel={t(`detail.amountA11y.${type}`, {
+                amount: formatCurrency(absoluteAmount),
+              })}
             >
               {type === "in" ? "+" : "-"}
               {formatCurrency(absoluteAmount)}
@@ -96,13 +106,16 @@ export const TransactionDetails = forwardRef<
 
         <View style={styles.details}>
           <Row
-            label="Reference ID"
+            label={t("detail.refId")}
             value={transaction.refId}
             canCopy={!isCapturing}
           />
-          <Row label="Recipient Name" value={transaction.recipientName} />
           <Row
-            label="Transfer Date"
+            label={t("detail.recipientName")}
+            value={transaction.recipientName}
+          />
+          <Row
+            label={t("detail.transferDate")}
             value={formatDatetime(transaction.transferDate)}
           />
         </View>

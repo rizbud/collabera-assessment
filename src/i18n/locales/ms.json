@@ -1,0 +1,96 @@
+{
+  "common": {
+    "back": "Kembali",
+    "empty": "Tiada transaksi tersedia",
+    "copied": "Disalin ke papan klip",
+    "copy": "Salin {{label}}",
+    "switchLanguage": "Tukar bahasa ke {{language}}"
+  },
+  "home": {
+    "greeting": {
+      "morning": "Selamat pagi, {{name}}!",
+      "afternoon": "Selamat tengah hari, {{name}}!",
+      "evening": "Selamat petang, {{name}}!"
+    },
+    "balanceLabel": "Baki Anda:",
+    "balanceA11y": "Baki anda ialah {{amount}}",
+    "actions": {
+      "add": "Tambah",
+      "send": "Hantar",
+      "history": "Sejarah",
+      "more": "Lagi"
+    },
+    "recentTransactions": "Transaksi Terkini",
+    "viewAll": "Lihat Semua",
+    "viewAllA11y": "Lihat semua transaksi"
+  },
+  "transactions": {
+    "title": "Sejarah Transaksi",
+    "filters": {
+      "all": "Semua",
+      "in": "Masuk",
+      "out": "Keluar"
+    },
+    "filterA11y": "Tapis transaksi mengikut {{label}}",
+    "monthA11y": "Transaksi pada {{month}}",
+    "incoming": "Masuk: {{amount}}",
+    "outgoing": "Keluar: {{amount}}",
+    "incomingA11y": "Masuk {{amount}}",
+    "outgoingA11y": "Keluar {{amount}}",
+    "itemA11y": {
+      "in": "Transaksi masuk {{name}} sebanyak {{amount}} daripada {{recipient}} pada {{date}}",
+      "out": "Transaksi keluar {{name}} sebanyak {{amount}} kepada {{recipient}} pada {{date}}"
+    }
+  },
+  "detail": {
+    "title": "Butiran Transaksi",
+    "notFound": "Transaksi tidak ditemui",
+    "refId": "ID Rujukan",
+    "recipientName": "Nama Penerima",
+    "transferDate": "Tarikh Pemindahan",
+    "transferNameA11y": "Nama pemindahan: {{name}}",
+    "amountA11y": {
+      "in": "Jumlah masuk {{amount}}",
+      "out": "Jumlah keluar {{amount}}"
+    },
+    "share": "Kongsi",
+    "shareA11y": "Kongsi butiran transaksi",
+    "shareDialogTitle": "Kongsi Butiran Transaksi",
+    "shareError": "Ralat berlaku semasa menangkap butiran transaksi."
+  },
+  "form": {
+    "addTitle": "Tambah Wang",
+    "sendTitle": "Hantar Wang",
+    "availableBalance": "Baki tersedia: {{amount}}",
+    "senderName": "Nama Penghantar",
+    "recipientName": "Nama Penerima",
+    "description": "Keterangan",
+    "amount": "Jumlah",
+    "placeholder": {
+      "senderName": "cth. Acme Corp",
+      "recipientName": "cth. John Doe",
+      "descriptionIn": "cth. Bayaran Gaji",
+      "descriptionOut": "cth. Sewa",
+      "amount": "0.00"
+    },
+    "error": {
+      "senderName": "Nama penghantar diperlukan",
+      "recipientName": "Nama penerima diperlukan",
+      "description": "Keterangan diperlukan",
+      "amount": "Masukkan jumlah lebih daripada 0",
+      "insufficientBalance": "Jumlah melebihi baki anda {{amount}}"
+    },
+    "submit": {
+      "add": "Tambah",
+      "send": "Hantar"
+    },
+    "submitA11y": {
+      "add": "Tambah wang",
+      "send": "Hantar wang"
+    },
+    "success": {
+      "add": "Ditambah {{amount}}",
+      "send": "Dihantar {{amount}} kepada {{recipient}}"
+    }
+  }
+}

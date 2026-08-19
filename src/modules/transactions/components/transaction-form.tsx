@@ -9,6 +9,7 @@ import {
 } from "react-native";
 
 import { Colors, Fonts, Spacing } from "@/constants/theme";
+import { useI18n } from "@/i18n";
 import { useTransactionsStore } from "@/store";
 import { calculateBalance, formatCurrency, toast } from "@/utils";
 
@@ -44,6 +45,7 @@ const Field = ({ label, error, ...inputProps }: FieldProps) => (
 );
 
 export const TransactionForm = ({ type }: TransactionFormProps) => {
+  const { t } = useI18n();
   const transactions = useTransactionsStore((s) => s.transactions);
   const addTransaction = useTransactionsStore((s) => s.addTransaction);
   const balance = useMemo(() => calculateBalance(transactions), [transactions]);
@@ -58,16 +60,19 @@ export const TransactionForm = ({ type }: TransactionFormProps) => {
     const nextErrors: Record<string, string> = {};
 
     if (!recipientName.trim()) {
-      nextErrors.recipientName =
-        type === "in" ? "Sender name is required" : "Recipient name is required";
+      nextErrors.recipientName = t(
+        type === "in" ? "form.error.senderName" : "form.error.recipientName",
+      );
     }
     if (!transferName.trim()) {
-      nextErrors.transferName = "Description is required";
+      nextErrors.transferName = t("form.error.description");
     }
     if (!Number.isFinite(parsedAmount) || parsedAmount <= 0) {
-      nextErrors.amount = "Enter an amount greater than 0";
+      nextErrors.amount = t("form.error.amount");
     } else if (type === "out" && parsedAmount > balance) {
-      nextErrors.amount = `Amount exceeds your balance of ${formatCurrency(balance)}`;
+      nextErrors.amount = t("form.error.insufficientBalance", {
+        amount: formatCurrency(balance),
+      });
     }
 
     setErrors(nextErrors);
@@ -80,8 +85,11 @@ export const TransactionForm = ({ type }: TransactionFormProps) => {
     });
     toast(
       type === "in"
-        ? `Added ${formatCurrency(parsedAmount)}`
-        : `Sent ${formatCurrency(parsedAmount)} to ${recipientName.trim()}`,
+        ? t("form.success.add", { amount: formatCurrency(parsedAmount) })
+        : t("form.success.send", {
+            amount: formatCurrency(parsedAmount),
+            recipient: recipientName.trim(),
+          }),
     );
     router.replace(`/transactions/${created.refId}`);
   };
@@ -89,26 +97,34 @@ export const TransactionForm = ({ type }: TransactionFormProps) => {
   return (
     <View style={styles.container}>
       <Text style={styles.balanceText}>
-        Available balance: {formatCurrency(balance)}
+        {t("form.availableBalance", { amount: formatCurrency(balance) })}
       </Text>
       <Field
-        label={type === "in" ? "Sender Name" : "Recipient Name"}
+        label={t(type === "in" ? "form.senderName" : "form.recipientName")}
         value={recipientName}
-        placeholder={type === "in" ? "e.g. Acme Corp" : "e.g. John Doe"}
+        placeholder={t(
+          type === "in"
+            ? "form.placeholder.senderName"
+            : "form.placeholder.recipientName",
+        )}
         error={errors.recipientName}
         onChangeText={setRecipientName}
       />
       <Field
-        label="Description"
+        label={t("form.description")}
         value={transferName}
-        placeholder={type === "in" ? "e.g. Salary Payment" : "e.g. Rent"}
+        placeholder={t(
+          type === "in"
+            ? "form.placeholder.descriptionIn"
+            : "form.placeholder.descriptionOut",
+        )}
         error={errors.transferName}
         onChangeText={setTransferName}
       />
       <Field
-        label="Amount"
+        label={t("form.amount")}
         value={amount}
-        placeholder="0.00"
+        placeholder={t("form.placeholder.amount")}
         keyboardType="decimal-pad"
         error={errors.amount}
         onChangeText={setAmount}
@@ -117,11 +133,13 @@ export const TransactionForm = ({ type }: TransactionFormProps) => {
         activeOpacity={0.7}
         style={styles.submitButton}
         accessibilityRole="button"
-        accessibilityLabel={type === "in" ? "Add money" : "Send money"}
+        accessibilityLabel={t(
+          type === "in" ? "form.submitA11y.add" : "form.submitA11y.send",
+        )}
         onPress={handleSubmit}
       >
         <Text style={styles.submitButtonText}>
-          {type === "in" ? "Add" : "Send"}
+          {t(type === "in" ? "form.submit.add" : "form.submit.send")}
         </Text>
       </TouchableOpacity>
     </View>

@@ -1,4 +1,5 @@
 import { Colors, Fonts, Spacing } from "@/constants/theme";
+import { useI18n } from "@/i18n";
 import { Transaction } from "@/types/transaction.type";
 import { formatCurrency, formatDatetime } from "@/utils";
 import { Feather } from "@expo/vector-icons";
@@ -10,6 +11,7 @@ interface TransactionItemProps {
 }
 
 export const TransactionItem = (props: TransactionItemProps) => {
+  const { t } = useI18n();
   const { data } = props;
   const type = data.amount >= 0 ? "in" : "out";
   const absoluteAmount = Math.abs(data.amount);
@@ -20,7 +22,12 @@ export const TransactionItem = (props: TransactionItemProps) => {
       style={styles.wrapper}
       onPress={() => router.push(`/transactions/${data.refId}`)}
       accessibilityRole="button"
-      accessibilityLabel={`Transaction ${type} ${data.transferName} of ${formatCurrency(absoluteAmount)} ${type === "in" ? "from" : "to"} ${data.recipientName} on ${formatDatetime(data.transferDate)}`}
+      accessibilityLabel={t(`transactions.itemA11y.${type}`, {
+        name: data.transferName,
+        amount: formatCurrency(absoluteAmount),
+        recipient: data.recipientName,
+        date: formatDatetime(data.transferDate),
+      })}
     >
       <View style={styles.iconWrapper}>
         {type === "in" ? (
