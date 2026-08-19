@@ -14,7 +14,13 @@ export const CardHeader = (props: CardHeaderProps) => {
 
   return (
     <View style={styles.wrapper}>
-      <Text style={styles.greetingText}>{greeting(name)}</Text>
+      <Text
+        style={styles.greetingText}
+        accessibilityRole="text"
+        accessibilityLabel={greeting(name)}
+      >
+        {greeting(name)}
+      </Text>
       <LinearGradient
         colors={[Colors.primaryDark, Colors.primary]}
         start={{ x: 0, y: 0 }}
@@ -22,7 +28,13 @@ export const CardHeader = (props: CardHeaderProps) => {
         style={styles.card}
       >
         <Text style={styles.balanceLabel}>Your Balance:</Text>
-        <Text style={styles.balanceAmountText}>{formatCurrency(balance)}</Text>
+        <Text
+          style={styles.balanceAmountText}
+          accessibilityRole="text"
+          accessibilityLabel={`Your balance is ${formatCurrency(balance)}`}
+        >
+          {formatCurrency(balance)}
+        </Text>
       </LinearGradient>
     </View>
   );

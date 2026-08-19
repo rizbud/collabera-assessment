@@ -1,6 +1,6 @@
 import { Feather } from "@expo/vector-icons";
 import { useCallback } from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 import { Colors, Fonts, Spacing } from "@/constants/theme";
 
@@ -14,33 +14,48 @@ export const ActionButtons = () => {
 
   return (
     <View style={styles.wrapper}>
-      <Pressable onPress={() => handleActionPress("add")} style={styles.button}>
+      <TouchableOpacity
+        activeOpacity={0.7}
+        onPress={() => handleActionPress("add")}
+        style={styles.button}
+        accessibilityRole="button"
+        accessibilityLabel="Add"
+      >
         <View style={styles.iconWrapper}>
           <Feather name="plus" size={32} color={Colors.primaryDark} />
         </View>
         <Text style={styles.buttonText}>Add</Text>
-      </Pressable>
-      <Pressable
+      </TouchableOpacity>
+      <TouchableOpacity
+        activeOpacity={0.7}
         onPress={() => handleActionPress("send")}
         style={styles.button}
+        accessibilityRole="button"
+        accessibilityLabel="Send"
       >
         <View style={styles.iconWrapper}>
           <Feather name="arrow-up-right" size={32} color={Colors.primaryDark} />
         </View>
         <Text style={styles.buttonText}>Send</Text>
-      </Pressable>
-      <Pressable
+      </TouchableOpacity>
+      <TouchableOpacity
+        activeOpacity={0.7}
         onPress={() => handleActionPress("history")}
         style={styles.button}
+        accessibilityRole="button"
+        accessibilityLabel="History"
       >
         <View style={styles.iconWrapper}>
           <Feather name="clock" size={32} color={Colors.primaryDark} />
         </View>
         <Text style={styles.buttonText}>History</Text>
-      </Pressable>
-      <Pressable
+      </TouchableOpacity>
+      <TouchableOpacity
+        activeOpacity={0.7}
         onPress={() => handleActionPress("more")}
         style={styles.button}
+        accessibilityRole="button"
+        accessibilityLabel="More"
       >
         <View style={styles.iconWrapper}>
           <Feather
@@ -50,7 +65,7 @@ export const ActionButtons = () => {
           />
         </View>
         <Text style={styles.buttonText}>More</Text>
-      </Pressable>
+      </TouchableOpacity>
     </View>
   );
 };
