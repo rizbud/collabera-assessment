@@ -1,7 +1,7 @@
 import { LinearGradient } from "expo-linear-gradient";
 import { StyleSheet, Text, View } from "react-native";
 
-import { Colors, Fonts } from "@/constants/theme";
+import { Colors, Fonts, Spacing } from "@/constants/theme";
 import { formatCurrency, greeting } from "@/utils";
 
 interface CardHeaderProps {
@@ -30,13 +30,13 @@ export const CardHeader = (props: CardHeaderProps) => {
 
 const styles = StyleSheet.create({
   wrapper: {
-    gap: 8,
+    gap: Spacing.two,
   },
   card: {
-    padding: 16,
-    gap: 4,
+    padding: Spacing.three,
+    gap: Spacing.one,
     backgroundColor: Colors.primary,
-    borderRadius: 8,
+    borderRadius: Spacing.two,
   },
   greetingText: {
     fontSize: 16,
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
   },
   balanceLabel: {
     fontSize: 18,
-    fontFamily: Fonts.medium,
+    fontFamily: Fonts.semiBold,
     color: Colors.white,
   },
   balanceAmountText: {
