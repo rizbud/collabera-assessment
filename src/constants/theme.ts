@@ -5,6 +5,8 @@ export const Colors = {
   primaryDark: "#4B3DFF",
   gray: "#595959",
   lightGray: "#E0E0E0",
+  green: "#02b94f",
+  red: "#fd3131",
 } as const;
 
 export type ThemeColor = keyof typeof Colors;

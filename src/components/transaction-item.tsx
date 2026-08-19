@@ -24,9 +24,9 @@ export const TransactionItem = (props: TransactionItemProps) => {
     >
       <View style={styles.iconWrapper}>
         {type === "in" ? (
-          <Feather name="arrow-down-left" size={28} color="green" />
+          <Feather name="arrow-down-left" size={28} color={Colors.green} />
         ) : (
-          <Feather name="arrow-up-right" size={28} color="red" />
+          <Feather name="arrow-up-right" size={28} color={Colors.red} />
         )}
       </View>
       <View style={styles.flex}>
@@ -54,7 +54,7 @@ export const TransactionItem = (props: TransactionItemProps) => {
               style={[
                 styles.amount,
                 {
-                  color: type === "in" ? "green" : Colors.foreground,
+                  color: type === "in" ? Colors.green : Colors.foreground,
                 },
               ]}
             >
