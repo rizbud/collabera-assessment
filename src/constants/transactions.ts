@@ -41,6 +41,6 @@ export const MOCK_TRANSACTIONS: Transactions = [
     transferDate: "2024-07-28T19:41:03Z",
     recipientName: "Sarah Wilson",
     transferName: "Rent",
-    amount: -1800.0,
+    amount: 1800.0,
   },
 ];

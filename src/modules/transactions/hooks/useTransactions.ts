@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 
 import { useI18n } from "@/i18n";
 import { useTransactionsStore } from "@/store";
@@ -12,6 +12,9 @@ export const useTransactions = () => {
     filter: activeFilter,
     setFilter: setActiveFilter,
   } = useTransactionsStore((s) => s);
+
+  // The filter is screen state, so leaving the screen drops it
+  useEffect(() => () => setActiveFilter("all"), [setActiveFilter]);
 
   const rows = useMemo(
     () => groupByMonth(filterTransactions(transactions, activeFilter)),
