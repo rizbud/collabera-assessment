@@ -1,14 +1,24 @@
-import { StyleSheet } from "react-native";
+import { ScrollView, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import { Colors, Spacing } from "@/constants/theme";
-import { ActionButtons, CardHeader } from "@/modules/home/components";
+import {
+  ActionButtons,
+  CardHeader,
+  Transactions,
+} from "@/modules/home/components";
 
 export default function IndexScreen() {
   return (
     <SafeAreaView style={styles.safeArea}>
-      <CardHeader name="John Doe" balance={1000} />
-      <ActionButtons />
+      <ScrollView
+        contentContainerStyle={styles.container}
+        showsVerticalScrollIndicator={false}
+      >
+        <CardHeader name="John Doe" balance={1000} />
+        <ActionButtons />
+        <Transactions />
+      </ScrollView>
     </SafeAreaView>
   );
 }
@@ -17,6 +27,8 @@ const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
     backgroundColor: Colors.background,
+  },
+  container: {
     paddingVertical: Spacing.three,
     paddingHorizontal: Spacing.three + Spacing.one,
     gap: Spacing.four,

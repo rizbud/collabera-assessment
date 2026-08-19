@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
   iconWrapper: {
     borderRadius: 999,
     padding: Spacing.two,
-    backgroundColor: "#E0E0E0",
+    backgroundColor: Colors.lightGray,
   },
   buttonText: {
     fontSize: 14,

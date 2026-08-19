@@ -4,8 +4,8 @@ export const Colors = {
   white: "#FFFFFF",
   primary: "#6057FF",
   primaryDark: "#4B3DFF",
-  secondary: "#FF6584",
-  secondaryDark: "#FF3B6F",
+  gray: "#595959",
+  lightGray: "#E0E0E0",
 } as const;
 
 export type ThemeColor = keyof typeof Colors;
