@@ -15,7 +15,7 @@ export default function IndexScreen() {
         contentContainerStyle={styles.container}
         showsVerticalScrollIndicator={false}
       >
-        <CardHeader name="John Doe" balance={1000} />
+        <CardHeader name="Rizki" />
         <ActionButtons />
         <Transactions />
       </ScrollView>

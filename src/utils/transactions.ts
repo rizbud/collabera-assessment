@@ -9,6 +9,10 @@ export const isMonthHeader = (
   row: TransactionRow,
 ): row is TransactionMonthHeader => "month" in row;
 
+// Net balance of the given transactions (incoming minus outgoing)
+export const calculateBalance = (transactions: Transactions): number =>
+  transactions.reduce((total, t) => total + t.amount, 0);
+
 // Sort transactions by transferDate in descending order (newest first)
 export const sortByDateDesc = (transactions: Transactions): Transactions =>
   [...transactions].sort(

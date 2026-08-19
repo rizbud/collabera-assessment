@@ -2,15 +2,19 @@ import { LinearGradient } from "expo-linear-gradient";
 import { StyleSheet, Text, View } from "react-native";
 
 import { Colors, Fonts, Spacing } from "@/constants/theme";
-import { formatCurrency, greeting } from "@/utils";
+import { calculateBalance, formatCurrency, greeting } from "@/utils";
+import { useTransactionsStore } from "@/store";
+import { useMemo } from "react";
 
 interface CardHeaderProps {
   name: string;
-  balance: number;
 }
 
 export const CardHeader = (props: CardHeaderProps) => {
-  const { name, balance } = props;
+  const { name } = props;
+
+  const transactions = useTransactionsStore((s) => s.transactions);
+  const balance = useMemo(() => calculateBalance(transactions), [transactions]);
 
   return (
     <View style={styles.wrapper}>
