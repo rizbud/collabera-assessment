@@ -11,7 +11,7 @@ interface TransactionItemProps {
 }
 
 export const TransactionItem = (props: TransactionItemProps) => {
-  const { t } = useI18n();
+  const { t, currentLanguage } = useI18n();
   const { data } = props;
   const type = data.amount >= 0 ? "in" : "out";
   const absoluteAmount = Math.abs(data.amount);
@@ -26,7 +26,7 @@ export const TransactionItem = (props: TransactionItemProps) => {
         name: data.transferName,
         amount: formatCurrency(absoluteAmount),
         recipient: data.recipientName,
-        date: formatDatetime(data.transferDate),
+        date: formatDatetime(data.transferDate, currentLanguage),
       })}
     >
       <View style={styles.iconWrapper}>
@@ -45,7 +45,7 @@ export const TransactionItem = (props: TransactionItemProps) => {
           </View>
           <View style={styles.flex}>
             <Text numberOfLines={1} style={styles.transferDate}>
-              {formatDatetime(data.transferDate)}
+              {formatDatetime(data.transferDate, currentLanguage)}
             </Text>
           </View>
         </View>

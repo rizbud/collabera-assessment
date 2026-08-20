@@ -37,8 +37,10 @@ describe("formatDatetime", () => {
     expect(formatMonthYear(date)).toBe("Julai 2024");
   });
 
-  it("accepts an explicit locale", () => {
-    expect(formatMonthYear(date, "ms-MY")).toBe("Julai 2024");
+  it("accepts an explicit language, so components can pass their own", () => {
+    expect(formatMonthYear(date, "ms")).toBe("Julai 2024");
+    expect(formatDatetime(date, "ms")).toContain("Jul");
+    expect(formatMonthYear(date, "en")).toBe("July 2024");
   });
 });
 

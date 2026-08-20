@@ -59,7 +59,7 @@ export const TransactionDetails = forwardRef<
   ViewShotRef,
   TransactionDetailsProps
 >(({ transaction, isCapturing }, ref) => {
-  const { t } = useI18n();
+  const { t, currentLanguage } = useI18n();
   const type = transaction.amount >= 0 ? "in" : "out";
   const absoluteAmount = Math.abs(transaction.amount);
 
@@ -116,7 +116,7 @@ export const TransactionDetails = forwardRef<
           />
           <Row
             label={t("detail.transferDate")}
-            value={formatDatetime(transaction.transferDate)}
+            value={formatDatetime(transaction.transferDate, currentLanguage)}
           />
         </View>
       </ViewShot>

@@ -13,11 +13,14 @@ import { sortByDateDesc } from "@/utils";
 const RECENT_COUNT = 5;
 
 export const Transactions = () => {
-  const { t } = useI18n();
+  const { t, currentLanguage } = useI18n();
   const transactions = useTransactionsStore((s) => s.transactions);
+  // rows format their own dates, so a new array is needed for FlashList to
+  // re-render them after a language change
   const recent = useMemo(
     () => sortByDateDesc(transactions).slice(0, RECENT_COUNT),
-    [transactions],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [transactions, currentLanguage],
   );
 
   return (

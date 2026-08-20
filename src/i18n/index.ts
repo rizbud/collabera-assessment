@@ -15,7 +15,8 @@ export const deviceLanguage = (): Language => {
 };
 
 // Intl locale for dates: keeps the Malaysian region for both languages
-export const dateLocale = (): string => `${i18n.language}-MY`;
+export const dateLocale = (language?: Language): string =>
+  `${language ?? i18n.language}-MY`;
 
 i18n.use(initReactI18next).init({
   resources,

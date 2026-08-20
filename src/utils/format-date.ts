@@ -1,6 +1,8 @@
-import { dateLocale } from "@/i18n";
+import { dateLocale, type Language } from "@/i18n";
 
-export function formatDatetime(dateString: string, locale?: string): string {
+// Pass the language from a component so the formatted value is recomputed on a
+// language change; it falls back to the active one for non-component callers.
+export function formatDatetime(dateString: string, language?: Language): string {
   const date = new Date(dateString);
   const options: Intl.DateTimeFormatOptions = {
     year: "numeric",
@@ -10,11 +12,11 @@ export function formatDatetime(dateString: string, locale?: string): string {
     minute: "2-digit",
     hour12: false,
   };
-  return date.toLocaleDateString(locale ?? dateLocale(), options);
+  return date.toLocaleDateString(dateLocale(language), options);
 }
 
-export function formatMonthYear(dateString: string, locale?: string): string {
-  return new Date(dateString).toLocaleDateString(locale ?? dateLocale(), {
+export function formatMonthYear(dateString: string, language?: Language): string {
+  return new Date(dateString).toLocaleDateString(dateLocale(language), {
     month: "long",
     year: "numeric",
   });

@@ -4,5 +4,10 @@
     "source.organizeImports": "explicit",
     "source.sortMembers": "explicit"
   },
-  "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+  "i18n-ally.localesPaths": [
+    "src/i18n",
+    "coverage/lcov-report/i18n",
+    "src/i18n/locales"
+  ]
 }
