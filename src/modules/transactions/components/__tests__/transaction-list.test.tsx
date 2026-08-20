@@ -51,15 +51,17 @@ describe("TransactionList", () => {
     expect(screen.getByText("No transactions available")).toBeOnTheScreen();
   });
 
-  it("translates the month totals and the empty state", async () => {
+  it("translates the empty state in Malay", async () => {
     await i18n.changeLanguage("ms");
     await render(<TransactionList data={[]} />);
 
     expect(screen.getByText("Tiada transaksi tersedia")).toBeOnTheScreen();
+  });
 
-    // month labels are built when the rows are grouped, which the screen redoes
-    // on a language change
+  it("translates month totals in Malay", async () => {
+    await i18n.changeLanguage("ms");
     await render(<TransactionList data={groupByMonth(transactions)} />);
+
     expect(screen.getByText("Oktober 2024")).toBeOnTheScreen();
     expect(screen.getAllByText(/^Masuk: RM/)).toHaveLength(2);
     expect(screen.getAllByText(/^Keluar: RM/)).toHaveLength(2);

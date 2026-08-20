@@ -28,6 +28,14 @@ jest.mock("expo-router", () => ({
   useLocalSearchParams: jest.fn(() => ({})),
 }));
 
+// FlashList v2 schedules an internal animation-frame update after mounting.
+// Use its FlatList-compatible implementation in tests so that update does not
+// outlive the act scope; recycling behavior needs a device or emulator test.
+jest.mock("@shopify/flash-list", () => {
+  const { FlatList } = require("react-native");
+  return { FlashList: FlatList };
+});
+
 jest.mock("react-native-view-shot", () => {
   const { View } = require("react-native");
   return { __esModule: true, default: View };

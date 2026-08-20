@@ -105,8 +105,6 @@ How to trigger it:
 - **Manual run**: start the workflow from the Actions tab. Leave the `tag` input empty to only
   get the APK as a build artifact, or pass a tag to publish a release as well.
 
-The repository is private at the time of writing, so both links need repository access.
-
 ## Tech stack
 
 | Concern | Choice |
@@ -264,8 +262,8 @@ Notes for anyone extending the suite:
   clipboard, sharing, expo-router, view-shot, and safe-area-context (the real provider never
   renders children without a layout pass).
 - Currency assertions have to allow for the non-breaking space Intl puts after `RM`.
-- The test renderer does not recycle FlashList cells, so it cannot reproduce recycling bugs.
-  Those need a device or emulator.
+- Jest replaces FlashList with React Native's FlatList to avoid FlashList's internal layout timers;
+  recycling behavior still needs a device or emulator test.
 
 ## Known limitations
 
