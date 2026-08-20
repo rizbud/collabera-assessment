@@ -75,6 +75,38 @@ Go build automatically, so no manual download is needed there.
 | `npm run lint` | ESLint via `expo lint` |
 | `npx tsc --noEmit` | Type check |
 
+## Android build and releases
+
+A GitHub Actions workflow builds an installable Android APK:
+[`.github/workflows/android-release.yml`](.github/workflows/android-release.yml).
+
+- **Runs**: [Actions run history](https://github.com/rizbud/collabera-assessment/actions/workflows/android-release.yml)
+- **Downloads**: [Releases page](https://github.com/rizbud/collabera-assessment/releases)
+
+What it does, on a clean Ubuntu runner:
+
+1. `npm ci` and `npm test`, so a failing suite fails the build.
+2. `npx expo prebuild --platform android`, because the native project is generated from
+   `app.json` rather than committed.
+3. `./gradlew assembleRelease` in the generated `android` directory.
+4. Uploads the APK as a build artifact, named after the tag or the short commit SHA.
+5. Publishes a GitHub release with the APK attached when a tag is involved.
+
+How to trigger it:
+
+- **Tag push**: pushing a tag that starts with `v` builds and publishes a release under that
+  tag, with generated release notes.
+
+  ```bash
+  git tag v1.0.0
+  git push origin v1.0.0
+  ```
+
+- **Manual run**: start the workflow from the Actions tab. Leave the `tag` input empty to only
+  get the APK as a build artifact, or pass a tag to publish a release as well.
+
+The repository is private at the time of writing, so both links need repository access.
+
 ## Tech stack
 
 | Concern | Choice |
