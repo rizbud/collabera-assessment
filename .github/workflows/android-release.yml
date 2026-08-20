@@ -24,18 +24,12 @@ jobs:
       TAG: ${{ github.event_name == 'push' && github.ref_name || inputs.tag }}
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
-
-      - uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: 17
-          cache: gradle
 
       - run: npm ci
 
@@ -44,6 +38,12 @@ jobs:
       # The native project is not committed, so generate it from app.json
       - name: Prebuild the Android project
         run: npx expo prebuild --platform android --no-install
+
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: 17
+          cache: gradle
 
       - name: Build release APK
         working-directory: android
